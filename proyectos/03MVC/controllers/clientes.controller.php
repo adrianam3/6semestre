@@ -1,25 +1,16 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-header("Allow: GET, POST, OPTIONS, PUT, DELETE");
-$method = $_SERVER["REQUEST_METHOD"];
-if($method == "OPTIONS") {die();}
-
-
-
 //TODO: controlador de proveedores
 
 require_once('../models/proveedores.model.php');
 //error_reporting(0); //TODOS: DESHABILITAR ERRORR DEJAR COMENTADO
-$proveedores = new Provedores;
+$clientes = new Clientes;
 
 switch ($_GET["op"]) {
-        //TODO: operaciones de proveedores
+        //TODO: operaciones de clientes
 
     case 'todos': //TODO: Procedimeinto para cargar todos las datos de los proveedores
-        $datos = array(); // Defino un arreglo para almacenar los valores que vienen de la clase proveedores.model.php
+        $datos = array(); // Defino un arreglo para almacenar los valores que vienen de la clase clientes.model.php
         $datos = $proveedores->todos(); // Llamo al metodo todos de la clase proveedores.model.php
         while ($row = mysqli_fetch_assoc($datos)) //Ciclo de repeticon para asociar los valor almancenados en la variable $datos
         {
