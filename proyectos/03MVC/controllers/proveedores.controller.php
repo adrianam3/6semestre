@@ -1,18 +1,16 @@
 <?php
-
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 $method = $_SERVER["REQUEST_METHOD"];
-if($method == "OPTIONS") {die();}
-
-
-
+if($method == "OPTIONS") {
+    die();
+}
 //TODO: controlador de proveedores
 
 require_once('../models/proveedores.model.php');
-error_reporting(0); //TODOS: DESHABILITAR ERRORR DEJAR COMENTADO
+error_reporting(0); //DESHABILITAR ERRORR,  DEJAR COMENTADO Si se desea que se muestre el error
 $proveedores = new Provedores;
 
 switch ($_GET["op"]) {
