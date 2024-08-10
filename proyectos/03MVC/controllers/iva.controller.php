@@ -7,18 +7,18 @@ $method = $_SERVER["REQUEST_METHOD"];
 if ($method == "OPTIONS") {
     die();
 }
-//TODO: controlador de unidadMedida
+//TODO: controlador de iva
 
-require_once('../models/unidadMedida.model.php');
+require_once('../models/iva.model.php');
 error_reporting(0);//TODOS: DESHABILITAR ERRORR,  DEJAR COMENTADO Si se desea que se muestre el error
-$unidadMedida = new UnidadMedida;
+$iva = new Iva;
 
 switch ($_GET["op"]) {
-        //TODO: operaciones de unidadMedida
+        //TODO: operaciones de iva
 
-    case 'todos': //TODO: Procedimeinto para cargar todos las datos de unidad_medida
-        $datos = array(); // Defino un arreglo para almacenar los valores que vienen de la clase unidadMedida.model.php
-        $datos = $unidadMedida->todos(); // Llamo al metodo todos de la clase unidadMedida.model.php
+    case 'todos': //TODO: Procedimeinto para cargar todos las datos de iva
+        $datos = array(); // Defino un arreglo para almacenar los valores que vienen de la clase iva.model.php
+        $datos = $iva->todos(); // Llamo al metodo todos de la clase iva.model.php
         while ($row = mysqli_fetch_assoc($datos)) //Ciclo de repeticon para asociar los valor almancenados en la variable $datos
         {
             $todos[] = $row;
@@ -27,36 +27,38 @@ switch ($_GET["op"]) {
         break;
         //TODO: procedimeinto para obtener un registro de la base de datos
     case 'uno':
-        $idUnidad_Medida = $_POST["idUnidad_Medida"];
+        $idIVA = $_POST["idIVA"];
         $datos = array();
-        $datos = $unidadMedida->uno($idUnidad_Medida);
+        $datos = $iva->uno($idIVA);
         $res = mysqli_fetch_assoc($datos);
         echo json_encode($res);
         break;
-        //TODO: Procedimeinto para insertar un unidad_medida en la base de datos
+        //TODO: Procedimeinto para insertar un iva en la base de datos
     case 'insertar':
         $Detalle = $_POST["Detalle"];
-        $Tipo = $_POST["Tipo"];
-          
+        $Estado = $_POST["Estado"];
+        $Valor = $_POST["Valor"];
+
         $datos = array();
-        $datos = $unidadMedida->insertar($Detalle, $Tipo);
+        $datos = $iva->insertar($Detalle, $Estado, $Valor);
         echo json_encode($datos);
         break;
-        //TODO: Procedimeinto para actualziar un unidad_medida en la base de datos
+        //TODO: Procedimeinto para actualziar un unidad_medivaida en la base de datos
     case 'actualizar':
-        $idUnidad_Medida = $_POST["idUnidad_Medida"];
+        $idIVA = $_POST["idIVA"];
         $Detalle = $_POST["Detalle"];
-        $Tipo = $_POST["Tipo"];
-               
+        $Estado = $_POST["Estado"];
+        $Valor = $_POST["Valor"];
+       
         $datos = array();
-        $datos = $unidadMedida->actualizar($idUnidad_Medida, $Detalle, $Tipo);
+        $datos = $iva->actualizar($idIVA, $Detalle, $Estado, $Valor);
         echo json_encode($datos);
         break;
-        //TODO: Procedimeinto para eliminar un unidad_medida en la base de datos
+        //TODO: Procedimeinto para eliminar un iva en la base de datos
     case 'eliminar':
-        $idUnidad_Medida = $_POST["idUnidad_Medida"];
+        $idIVA = $_POST["idIVA"];
         $datos = array();
-        $datos = $unidadMedida->eliminar($idUnidad_Medida);
+        $datos = $iva->eliminar($idIVA);
         echo json_encode($datos);
         break;
 }
