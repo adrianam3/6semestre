@@ -12,7 +12,7 @@ if($method == "OPTIONS") {die();}
 //TODO: controlador de proveedores
 
 require_once('../models/proveedores.model.php');
-//error_reporting(0); //TODOS: DESHABILITAR ERRORR DEJAR COMENTADO
+error_reporting(0); //TODOS: DESHABILITAR ERRORR DEJAR COMENTADO
 $proveedores = new Provedores;
 
 switch ($_GET["op"]) {

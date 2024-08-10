@@ -25,12 +25,12 @@ class Clientes
         return $datos;
     }
 
-    public function insertar($Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto) //insert into provedores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
+    public function insertar($Nombres, $Direccion, $Telefono, $Cedula, $Correo) //insert into provedores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
     {
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoParaConectar();
-            $cadena = "INSERT INTO `proveedores` ( `Nombre_Empresa`, `Direccion`, `Telefono`, `Contacto_Empresa`, `Teleofno_Contacto`) VALUES ('$Nombre_Empresa','$Direccion','$Telefono','$Contacto_Empresa','$Teleofno_Contacto')";
+            $cadena = "INSERT INTO `clientes` (  `Nombres`, `Direccion`, `Telefono`, `Cedula`, `Correo`) VALUES ('$Nombres', '$Direccion', '$Telefono', '$Cedula', '$Correo')";
             if (mysqli_query($con, $cadena)) {
                 return $con->insert_id;
             } else {
@@ -42,14 +42,14 @@ class Clientes
             $con->close();
         }
     }
-    public function actualizar($idProveedores, $Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto) //update provedores set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
+    public function actualizar($idClientes, $Nombres, $Direccion, $Telefono, $Cedula, $Correo) //update provedores set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoParaConectar();
-            $cadena = "UPDATE `proveedores` SET `Nombre_Empresa`='$Nombre_Empresa',`Direccion`='$Direccion',`Telefono`='$Telefono',`Contacto_Empresa`='$Contacto_Empresa',`Teleofno_Contacto`='$Teleofno_Contacto' WHERE `idProveedores` = $idProveedores";
+            $cadena = "UPDATE `clientes` SET `Nombres`='$Nombres',`Direccion`='$Direccion',`Telefono`='$Telefono',`Cedula`='$Cedula',`Correo`='$Correo' WHERE `idClientes` = $idClientes";
             if (mysqli_query($con, $cadena)) {
-                return $idProveedores;
+                return $idClientes;
             } else {
                 return $con->error;
             }
@@ -59,12 +59,12 @@ class Clientes
             $con->close();
         }
     }
-    public function eliminar($idProveedores) //delete from provedores where id = $id
+    public function eliminar($idClientes) //delete from provedores where id = $id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoParaConectar();
-            $cadena = "DELETE FROM `proveedores` WHERE `idProveedores`= $idProveedores";
+            $cadena = "DELETE FROM `clientes` WHERE `idClientes`= $idClientes";
             if (mysqli_query($con, $cadena)) {
                 return 1;
             } else {

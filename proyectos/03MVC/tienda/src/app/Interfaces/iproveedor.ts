@@ -1,6 +1,6 @@
 export interface Iproveedor {
 
-    idProveedor: number;
+    idProveedores: number;
     Nombre_Empresa: string;
     Direccion: string;
     Telefono: string;
