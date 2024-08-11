@@ -19,7 +19,7 @@ class UnidadMedida
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "SELECT * FROM `clientes` WHERE `idUnidad_Medida`=$idUnidad_Medida";
+        $cadena = "SELECT * FROM `unidad_medida` WHERE `idUnidad_Medida`=$idUnidad_Medida";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;

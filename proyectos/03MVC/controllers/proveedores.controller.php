@@ -16,7 +16,7 @@ $proveedores = new Provedores;
 switch ($_GET["op"]) {
         //TODO: operaciones de proveedores
 
-    case 'todos': //TODO: Procedimeinto para cargar todos las datos de los proveedores
+    case 'todos': //TODO: Procedimiento para cargar todos las datos de los proveedores
         $datos = array(); // Defino un arreglo para almacenar los valores que vienen de la clase proveedores.model.php
         $datos = $proveedores->todos(); // Llamo al metodo todos de la clase proveedores.model.php
         while ($row = mysqli_fetch_assoc($datos)) //Ciclo de repeticon para asociar los valor almancenados en la variable $datos

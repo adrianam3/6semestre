@@ -16,7 +16,7 @@ $unidadMedida = new UnidadMedida;
 switch ($_GET["op"]) {
         //TODO: operaciones de unidadMedida
 
-    case 'todos': //TODO: Procedimeinto para cargar todos las datos de unidad_medida
+    case 'todos': //TODO: Procedimiento para cargar todos las datos de unidad_medida
         $datos = array(); // Defino un arreglo para almacenar los valores que vienen de la clase unidadMedida.model.php
         $datos = $unidadMedida->todos(); // Llamo al metodo todos de la clase unidadMedida.model.php
         while ($row = mysqli_fetch_assoc($datos)) //Ciclo de repeticon para asociar los valor almancenados en la variable $datos
