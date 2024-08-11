@@ -15,7 +15,7 @@ class Productos
         return $datos;
     }
 
-    public function uno($idProductos) //select * from productos where id = $id
+    public function uno($idProductos) //select * from productos where idProductos = $idProductos
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
@@ -25,7 +25,7 @@ class Productos
         return $datos;
     }
 
-    public function insertar($Codigo_Barras, $Nombre_Producto, $Graba_IVA) //insert into provproductos edores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
+    public function insertar($Codigo_Barras, $Nombre_Producto, $Graba_IVA) //INSERT INTO `productos`(`idProductos`, `Codigo_Barras`, `Nombre_Producto`, `Graba_IVA`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
     {
         try {
             $con = new ClaseConectar();
@@ -42,7 +42,7 @@ class Productos
             $con->close();
         }
     }
-    public function actualizar($idProductos, $Codigo_Barras, $Nombre_Producto, $Graba_IVA) //update productos set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
+    public function actualizar($idProductos, $Codigo_Barras, $Nombre_Producto, $Graba_IVA) //UPDATE `productos` SET `idProductos`='[value-1]',`Codigo_Barras`='[value-2]',`Nombre_Producto`='[value-3]',`Graba_IVA`='[value-4]' WHERE $idProductos=idProductos
     {
         try {
             $con = new ClaseConectar();
@@ -59,7 +59,7 @@ class Productos
             $con->close();
         }
     }
-    public function eliminar($idProductos) //delete from productos where id = $id
+    public function eliminar($idProductos) //delete from productos where idProductos = $idProductos
     {
         try {
             $con = new ClaseConectar();

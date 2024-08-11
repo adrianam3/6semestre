@@ -15,7 +15,7 @@ class Clientes
         return $datos;
     }
 
-    public function uno($idClientes) //select * from clientes where id = $id
+    public function uno($idClientes) //select * from clientes where idClientes = $idClientes
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
@@ -25,7 +25,7 @@ class Clientes
         return $datos;
     }
 
-    public function insertar($Nombres, $Direccion, $Telefono, $Cedula, $Correo) //insert into provedores (nombre, direccion, telefono) values ($nombre, $direccion, $telefono)
+    public function insertar($Nombres, $Direccion, $Telefono, $Cedula, $Correo) //INSERT INTO `clientes`(`idClientes`, `Nombres`, `Direccion`, `Telefono`, `Cedula`, `Correo`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')
     {
         try {
             $con = new ClaseConectar();
@@ -42,7 +42,7 @@ class Clientes
             $con->close();
         }
     }
-    public function actualizar($idClientes, $Nombres, $Direccion, $Telefono, $Cedula, $Correo) //update clientes set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
+    public function actualizar($idClientes, $Nombres, $Direccion, $Telefono, $Cedula, $Correo) //UPDATE `clientes` SET `idClientes`='[value-1]',`Nombres`='[value-2]',`Direccion`='[value-3]',`Telefono`='[value-4]',`Cedula`='[value-5]',`Correo`='[value-6]' WHERE idClientes=$idClientes
     {
         try {
             $con = new ClaseConectar();
@@ -59,7 +59,7 @@ class Clientes
             $con->close();
         }
     }
-    public function eliminar($idClientes) //delete from clientes where id = $id
+    public function eliminar($idClientes) //delete from clientes where idClientes = $idClientes
     {
         try {
             $con = new ClaseConectar();
