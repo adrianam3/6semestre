@@ -42,7 +42,7 @@ class Clientes
             $con->close();
         }
     }
-    public function actualizar($idClientes, $Nombres, $Direccion, $Telefono, $Cedula, $Correo) //update provedores set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
+    public function actualizar($idClientes, $Nombres, $Direccion, $Telefono, $Cedula, $Correo) //update clientes set nombre = $nombre, direccion = $direccion, telefono = $telefono where id = $id
     {
         try {
             $con = new ClaseConectar();
@@ -59,7 +59,7 @@ class Clientes
             $con->close();
         }
     }
-    public function eliminar($idClientes) //delete from provedores where id = $id
+    public function eliminar($idClientes) //delete from clientes where id = $id
     {
         try {
             $con = new ClaseConectar();
