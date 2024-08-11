@@ -19,7 +19,7 @@ class Productos
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "SELECT * FROM `productos` WHERE `idClientes`=$idProductos";
+        $cadena = "SELECT * FROM `productos` WHERE `idProductos`=$idProductos";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;

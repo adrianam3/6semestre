@@ -7,7 +7,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 if ($method == "OPTIONS") {
     die();
 }
-//TODO: controlador de proveedores
+//TODO: controlador de clientes
 
 require_once('../models/clientes.model.php');
 error_reporting(0);//TODOS: DESHABILITAR ERRORR,  DEJAR COMENTADO Si se desea que se muestre el error
