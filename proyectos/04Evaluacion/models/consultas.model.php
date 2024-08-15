@@ -1,36 +1,36 @@
 <?php
-//TODO: Clase de DetalleFactura
+//TODO: Clase de Consultas
 require_once('../config/config.php');
-class DetalleFactura
+class Consultas
 {
-    //TODO: Implementar los metodos de la clase
+    //TODO: Implementar los métodos de la clase
 
-    public function todos() //select * from detalle_factura
+    public function todos() //select * from consultas
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "SELECT * FROM `detalle_factura`";
+        $cadena = "SELECT * FROM `consultas`";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function uno($idProveedores) //select * from detalle_factura where iidDetalle_Facturad = $idDetalle_Factura
+    public function uno($consulta_id) //select * from consultas where consulta_id = $consulta_id
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
-        $cadena = "SELECT * FROM `detalle_factura` WHERE `idDetalle_Factura`=$idDetalle_Factura";
+        $cadena = "SELECT * FROM `consultas` WHERE `consulta_id`=$consulta_id";
         $datos = mysqli_query($con, $cadena);
         $con->close();
         return $datos;
     }
 
-    public function insertar($Cantidad, $Factura_idFactura, $Kardex_idKardex, $Precio_Unitario, $Sub_Total_item) //INSERT INTO `detalle_factura`(`idDetalle_Factura`, `Cantidad`, `Factura_idFactura`, `Kardex_idKardex`, `Precio_Unitario`, `Sub_Total_item`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')
+    public function insertar($cita_id, $diagnostico, $tratamiento, $fecha_consulta) //INSERT INTO `consultas`(`consulta_id`, `cita_id`, `diagnostico`, `tratamiento`, `fecha_consulta`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]')
     {
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoParaConectar();
-            $cadena = "INSERT INTO `detalle_factura` ( `Cantidad`, `Factura_idFactura`, `Kardex_idKardex`, `Precio_Unitario`, `Sub_Total_item`) VALUES ('$Cantidad','$Factura_idFactura','$Kardex_idKardex','$Precio_Unitario','$Sub_Total_item')";
+            $cadena = "INSERT INTO `consultas` (`cita_id`, `diagnostico`, `tratamiento`, `fecha_consulta`) VALUES ('$cita_id', '$diagnostico', '$tratamiento', '$fecha_consulta')";
             if (mysqli_query($con, $cadena)) {
                 return $con->insert_id;
             } else {
@@ -42,14 +42,15 @@ class DetalleFactura
             $con->close();
         }
     }
-    public function actualizar($idDetalle_Factura, $Cantidad, $Factura_idFactura, $Kardex_idKardex, $Precio_Unitario, $Sub_Total_item) //INSERT INTO `detalle_factura`(`idDetalle_Factura`, `Cantidad`, `Factura_idFactura`, `Kardex_idKardex`, `Precio_Unitario`, `Sub_Total_item`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')
+
+    public function actualizar($consulta_id, $cita_id, $diagnostico, $tratamiento, $fecha_consulta) //UPDATE `consultas` SET `consulta_id`='[value-1]',`cita_id`='[value-2]',`diagnostico`='[value-3]',`tratamiento`='[value-4]',`fecha_consulta`='[value-5]' WHERE consulta_id=$consulta_id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoParaConectar();
-            $cadena = "UPDATE `detalle_factura` SET `Cantidad`='$Cantidad',`Factura_idFactura`='$Factura_idFactura',`Kardex_idKardex`='$Kardex_idKardex',`Precio_Unitario`='$Precio_Unitario',`Sub_Total_item`='$Sub_Total_item' WHERE `idDetalle_Factura` = $idDetalle_Factura";
+            $cadena = "UPDATE `consultas` SET `cita_id`='$cita_id', `diagnostico`='$diagnostico', `tratamiento`='$tratamiento', `fecha_consulta`='$fecha_consulta' WHERE `consulta_id` = $consulta_id";
             if (mysqli_query($con, $cadena)) {
-                return $idDetalle_Factura;
+                return $consulta_id;
             } else {
                 return $con->error;
             }
@@ -59,12 +60,13 @@ class DetalleFactura
             $con->close();
         }
     }
-    public function eliminar($idDetalle_Factura) //delete from detalle_factura where idDetalle_Factura = $idDetalle_Factura
+
+    public function eliminar($consulta_id) //delete from consultas where consulta_id = $consulta_id
     {
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoParaConectar();
-            $cadena = "DELETE FROM `detalle_factura` WHERE `idDetalle_Factura`= $idDetalle_Factura";
+            $cadena = "DELETE FROM `consultas` WHERE `consulta_id`= $consulta_id";
             if (mysqli_query($con, $cadena)) {
                 return 1;
             } else {
@@ -77,3 +79,4 @@ class DetalleFactura
         }
     }
 }
+?>

@@ -4,65 +4,64 @@ header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Conte
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 $method = $_SERVER["REQUEST_METHOD"];
-if($method == "OPTIONS") {
+if ($method == "OPTIONS") {
     die();
 }
-//TODO: controlador de detalle_factura
+//TODO: controlador de consultas
 
-require_once('../models/detalleFactura.model.php');
-error_reporting(0); //DESHABILITAR ERRORR,  DEJAR COMENTADO Si se desea que se muestre el error
-$detalleFactura = new DetalleFactura;
+require_once('../models/consultas.model.php');
+error_reporting(0); //TODO: DESHABILITAR ERROR, DEJAR COMENTADO Si se desea que se muestre el error
+$consultas = new Consultas;
+//TODO: operaciones de consultas
 
 switch ($_GET["op"]) {
-        //TODO: operaciones de detalle_factura
-
-    case 'todos': //TODO: Procedimeinto para cargar todos las datos de los detalle_factura
-        $datos = array(); // Defino un arreglo para almacenar los valores que vienen de la clase detalleFactura.model.php
-        $datos = $detalleFactura->todos(); // Llamo al metodo todos de la clase detalleFactura.model.php
-        while ($row = mysqli_fetch_assoc($datos)) //Ciclo de repeticon para asociar los valor almancenados en la variable $datos
-        {
+    case 'todos': //TODO: Procedimiento para cargar todos los datos de las consultas
+        $datos = array();
+        $datos = $consultas->todos();
+        $todos = array();
+        while ($row = mysqli_fetch_assoc($datos)) {
             $todos[] = $row;
         }
         echo json_encode($todos);
         break;
-        //TODO: procedimeinto para obtener un registro de la base de datos
-    case 'uno':
-        $idDetalle_Factura = $_POST["idDetalle_Factura"];
+
+    case 'uno': //TODO: Procedimiento para obtener una consulta específica
+        $consulta_id = $_POST["consulta_id"];
+        
         $datos = array();
-        $datos = $detalleFactura->uno($idDetalle_Factura);
+        $datos = $consultas->uno($consulta_id);
         $res = mysqli_fetch_assoc($datos);
         echo json_encode($res);
         break;
-        //TODO: Procedimeinto para insertar un detalle_factura en la base de datos
-    case 'insertar':
-        $Cantidad = $_POST["Cantidad"];
-        $Factura_idFactura = $_POST["Factura_idFactura"];
-        $Kardex_idKardex = $_POST["Kardex_idKardex"];
-        $Precio_Unitario = $_POST["Precio_Unitario"];
-        $Sub_Total_item = $_POST["Sub_Total_item"];
 
+    case 'insertar': //TODO: Procedimiento para insertar una consulta
+        $cita_id = $_POST["cita_id"];
+        $diagnostico = $_POST["diagnostico"];
+        $tratamiento = $_POST["tratamiento"];
+        $fecha_consulta = $_POST["fecha_consulta"];
+        
         $datos = array();
-        $datos = $detalleFactura->insertar($Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto);
+        $datos = $consultas->insertar($cita_id, $diagnostico, $tratamiento, $fecha_consulta);
         echo json_encode($datos);
         break;
-        //TODO: Procedimeinto para actualziar un detalle_factura en la base de datos
-    case 'actualizar':
-        $idDetalle_Factura = $_POST["idDetalle_Factura"];
-        $Cantidad = $_POST["Cantidad"];
-        $Factura_idFactura = $_POST["Factura_idFactura"];
-        $Kardex_idKardex = $_POST["Kardex_idKardex"];
-        $Precio_Unitario = $_POST["Precio_Unitario"];
-        $Sub_Total_item = $_POST["Sub_Total_item"];
 
+    case 'actualizar': //TODO: Procedimiento para actualizar una consulta
+        $consulta_id = $_POST["consulta_id"];
+        $cita_id = $_POST["cita_id"];
+        $diagnostico = $_POST["diagnostico"];
+        $tratamiento = $_POST["tratamiento"];
+        $fecha_consulta = $_POST["fecha_consulta"];
+        
         $datos = array();
-        $datos = $detalleFactura->actualizar($idProveedores, $Nombre_Empresa, $Direccion, $Telefono, $Contacto_Empresa, $Teleofno_Contacto);
+        $datos = $consultas->actualizar($consulta_id, $cita_id, $diagnostico, $tratamiento, $fecha_consulta);
         echo json_encode($datos);
         break;
-        //TODO: Procedimeinto para eliminar un detalle_factura en la base de datos
-    case 'eliminar':
-        $idDetalle_Factura = $_POST["idDetalle_Factura"];
+
+    case 'eliminar': //TODO: Procedimiento para eliminar una consulta
+        $consulta_id = $_POST["consulta_id"];
         $datos = array();
-        $datos = $detalleFactura->eliminar($idDetalle_Factura);
+        $datos = $consultas->eliminar($consulta_id);
         echo json_encode($datos);
         break;
 }
+?>
