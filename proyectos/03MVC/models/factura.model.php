@@ -3,9 +3,30 @@
 require_once('../config/config.php');
 class Factura
 {
+    
+    public function todos() // select * from factura
+    {
+        $con = new ClaseConectar();
+        $con = $con->ProcedimientoParaConectar();
+        $cadena = "SELECT factura.idFactura, clientes.Nombres, (factura.Sub_total + factura.Sub_total_iva) as total FROM `factura` INNER JOIN clientes on factura.Clientes_idClientes = clientes.idClientes";
+        $datos = mysqli_query($con, $cadena);
+        $con->close();
+        return $datos;
+    }
+
+    public function uno($idFactura) // select * from factura where id = $idFactura
+    {
+        $con = new ClaseConectar();
+        $con = $con->ProcedimientoParaConectar();
+        $cadena = "SELECT * FROM `factura` INNER JOIN clientes on factura.Clientes_idClientes = clientes.idClientes WHERE `idFactura` = $idFactura";
+        $datos = mysqli_query($con, $cadena);
+        $con->close();
+        return $datos;
+    }
+    
     //TODO: Implementar los metodos de la clase
 
-    public function todos() //select * from factura
+    /*public function todos() //select * from factura
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoParaConectar();
@@ -24,6 +45,7 @@ class Factura
         $con->close();
         return $datos;
     }
+        */
 
     public function insertar($Fecha, $Sub_total, $Sub_total_iva, $Valor_IVA, $Clientes_idClientes) //INSERT INTO `factura`(`idFactura`, `Fecha`, `Sub_total`, `Sub_total_iva`, `Valor_IVA`, `Clientes_idClientes`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')
     {
@@ -47,7 +69,7 @@ class Factura
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoParaConectar();
-            $cadena = "UPDATE `factura` SET `idFactura`='$idFactura',`Fecha`='$Fecha',`Sub_total_iva`='$Sub_total_iva',`Valor_IVA`='$Valor_IVA',`Clientes_idClientes`='$Clientes_idClientes' WHERE `idFactura` = $idFactura";
+            $cadena = "UPDATE `factura` SET `idFactura`='$idFactura',`Fecha`='$Fecha',`Sub_total`='$Sub_total',`Sub_total_iva`='$Sub_total_iva',`Valor_IVA`='$Valor_IVA',`Clientes_idClientes`='$Clientes_idClientes' WHERE `idFactura` = $idFactura";
             if (mysqli_query($con, $cadena)) {
                 return $idFactura;
             } else {
