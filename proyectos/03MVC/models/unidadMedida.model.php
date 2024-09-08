@@ -47,7 +47,7 @@ class UnidadMedida
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoParaConectar();
-            $cadena = "UPDATE `unidad_medida` SET `Detalle`='$Detalle',`Tipo`='$Tipo'";
+            $cadena = "UPDATE `unidad_medida` SET `Detalle`='$Detalle',`Tipo`='$Tipo' WHERE `idUnidad_Medida` = $idUnidad_Medida";
             if (mysqli_query($con, $cadena)) {
                 return $idUnidad_Medida;
             } else {

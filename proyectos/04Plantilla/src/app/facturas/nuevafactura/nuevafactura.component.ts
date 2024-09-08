@@ -54,7 +54,6 @@ export class NuevafacturaComponent implements OnInit {
     });
     if (this.idFactura > 0) {
       this.facturaService.uno(this.idFactura).subscribe((unaFactura) => {
-        console.log(unaFactura);
         this.frm_factura.controls['Fecha'].setValue(this.cambiarFormatFecha(unaFactura.Fecha));
         this.frm_factura.controls['Sub_total'].setValue(unaFactura.Sub_total);
         this.frm_factura.controls['Sub_total_iva'].setValue(unaFactura.Sub_total_iva);
@@ -138,7 +137,6 @@ export class NuevafacturaComponent implements OnInit {
       }
     });
   }
-
 
   calculos() {
     let sub_total = this.frm_factura.get('Sub_total')?.value;
