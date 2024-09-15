@@ -19,6 +19,8 @@ import html2canvas from 'html2canvas';
   styleUrl: './nuevafactura.component.scss'
 })
 export class NuevafacturaComponent implements OnInit {
+  idFactura = 0;
+  cliente: ICliente;
   //variables o constantes
   titulo = 'Nueva Factura';
   listaClientes: ICliente[] = [];
@@ -79,6 +81,18 @@ export class NuevafacturaComponent implements OnInit {
         console.log(e);
       }
     });
+    if (this.idFactura > 0) {
+      this.facturaService.uno(this.idFactura).subscribe((unaFactura) => {
+        this.frm_factura.controls['Fecha'].setValue(this.cambiarFormatFecha(unaFactura.Fecha));
+        this.frm_factura.controls['Sub_total'].setValue(unaFactura.Sub_total);
+        this.frm_factura.controls['Sub_total_iva'].setValue(unaFactura.Sub_total_iva);
+        this.frm_factura.controls['Valor_IVA'].setValue(unaFactura.Valor_IVA);
+        this.frm_factura.controls['Clientes_idClientes'].setValue(unaFactura.Clientes_idClientes);
+        this.calculos();
+        this.titulo = 'Editar Factura';
+        this.cliente = this.obtenerCLiente(this.frm_factura.controls['Clientes_idClientes'].value);
+      });
+    }
   }
 
   grabar() {
@@ -166,5 +180,13 @@ export class NuevafacturaComponent implements OnInit {
     this.productoelejido.reduce((valor, producto) => {
       this.totalapagar += producto.Total;
     }, 0);
+  }
+  cambiarFormatFecha(fecha: string): string {
+    return fecha.split(' ')[0]; // Esto toma solo la parte YYYY-MM-DD
+  }
+
+  obtenerCLiente(idCliente: number) {
+    const cliente = this.listaClientes.find((cliente) => cliente.idClientes == idCliente);
+    return cliente;
   }
 }
